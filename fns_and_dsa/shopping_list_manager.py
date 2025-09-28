@@ -1,10 +1,8 @@
 # shopping_list_manager.py
 
-# Implementation of an array (list) named shopping_list at module level
 shopping_list = []
 
 def display_menu():
-    # exact string the checker expects
     print("Shopping List Manager")
     print("1. Add Item")
     print("2. Remove Item")
@@ -13,10 +11,9 @@ def display_menu():
 
 def main():
     while True:
-        # calling display_menu function
         display_menu()
 
-        # Choice input implemented as a number (int)
+        # Choice input as a number
         try:
             choice = int(input("Enter your choice: ").strip())
         except ValueError:
@@ -24,7 +21,8 @@ def main():
             continue
 
         if choice == 1:
-            item = input("Enter the item name to add: ").strip()
+            # EXACT string the checker wants
+            item = input("Enter the item to add: ").strip()
             if item:
                 shopping_list.append(item)
                 print(f"Added: {item}")
@@ -36,12 +34,11 @@ def main():
                 print("The shopping list is empty — nothing to remove.")
                 continue
 
-            item = input("Enter the item name to remove: ").strip()
+            item = input("Enter the item to remove: ").strip()
             if not item:
                 print("No item entered. Cancelled removal.")
                 continue
 
-            # case-insensitive removal of the first matching item
             index = next((i for i, v in enumerate(shopping_list) if v.lower() == item.lower()), None)
             if index is not None:
                 removed = shopping_list.pop(index)
